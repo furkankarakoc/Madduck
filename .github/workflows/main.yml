@@ -1,4 +1,4 @@
-name: Build iOS
+name: Build IPA
 
 on:
   push:
@@ -8,21 +8,16 @@ on:
 jobs:
   build:
     runs-on: macos-latest
-
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v2
+      - name: Checkout Repository
+        uses: actions/checkout@v2
 
-    - name: Install Ruby
-      uses: ruby/setup-ruby@v1
-      with:
-        ruby-version: '3.2.3'
+      - name: Install Fastlane
+        run: |
+          gem install bundler
+          bundle install
+          bundle exec fastlane install_plugins
 
-    - name: Install bundler
-      run: gem install bundler
-
-    - name: Install dependencies
-      run: bundle install
-
-    - name: Build IPA
-      run: bundle exec fastlane build_ios
+      - name: Build IPA
+        run: |
+          bundle exec fastlane build
