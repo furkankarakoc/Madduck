@@ -1,3 +1,10 @@
-lane :build do
-  gym
+platform :ios do
+  desc "Build iOS"
+  lane :build_ios do
+    gym(
+      export_method: "ad-hoc",
+      workspace: "FastlaneDemoApp.xcworkspace",
+      scheme: "FastlaneDemoApp"
+    )
+  end
 end
