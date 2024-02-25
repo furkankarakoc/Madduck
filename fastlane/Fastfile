@@ -3,8 +3,8 @@ platform :ios do
   lane :build_ios do
     gym(
       export_method: "ad-hoc",
-      workspace: "FastlaneDemoApp.xcworkspace",
-      scheme: "FastlaneDemoApp"
+      workspace: "Madduck.xcworkspace",
+      scheme: "Madduck"
     )
   end
 end
