@@ -8,16 +8,15 @@ on:
 jobs:
   build:
     runs-on: macos-latest
+
     steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v2
+    - uses: actions/checkout@v2
 
-      - name: Install Fastlane
-        run: |
-          gem install bundler
-          bundle install
-          bundle exec fastlane install_plugins
+    - name: Install dependencies
+      run: sudo gem install bundler
 
-      - name: Build IPA
-        run: |
-          bundle exec fastlane build
+    - name: Build IPA
+      run: fastlane ios build
+      env:
+        FASTLANE_PASSWORD: ${{ secrets.FASTLANE_PASSWORD }}
+        MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}
