@@ -1,0 +1,3 @@
+lane :build do
+  gym
+end
